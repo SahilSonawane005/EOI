@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import paginate from "express-paginate";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import pool from "./config/config.js";
@@ -31,6 +32,7 @@ app.use("/eoi", eoiRoutes);
 
 app.use("/auth", authRouter);
 
+app.use(paginate.middleware(10, 50)); 
 
 app.get("/", (req, res) => {
   res.send("backend working");
